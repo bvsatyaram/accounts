@@ -1,0 +1,321 @@
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+* html .clearfix {
+  height: 1%; }
+
+body{
+  background-color: #EFEBDF;
+  color: #222222;
+  font-family: tahoma,verdana,helvetica,arial;
+  font-size: 75%;
+  line-height: 17px;
+  margin: 0 auto;
+  width: 1024px;
+}
+
+a.button, input.button {
+  background:transparent url(/images/btn_bg.png) repeat-x scroll 0 0;
+  border:1px solid #C5701B;
+  color:#FFFFFF;
+  cursor:pointer;
+  display:block;
+  float:left;
+  font-family:inherit;
+  font-size:1em;
+  font-weight:bold;
+  line-height:17px;
+  margin-right:10px;
+  padding:3px 7px;
+  text-decoration:none;
+  width:auto;
+}
+
+/* Global styles */
+
+
+/* Styles for main page */
+
+#banner {
+  background: #9c9;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  font-size: 2em;
+  font-weight: bold;
+  color: #282;
+  text-align: center;
+  width: 100%;
+  line-height: 30px;
+}
+
+#swip_header {
+  background: transparent url(/images/banner_bg.png) repeat scroll 0 0;
+  color: white;
+  font-size: 0.9em;
+  padding: 0 0px 2px;
+  width: 100%;
+}
+
+#swip_header a#swip{
+  color:white;
+  float:left;
+  font-family: myriad pro;
+  font-size:1.2em;
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+#swip_header #header_actions {
+  float: right;
+}
+
+#swip_header #header_actions a{
+  border-right: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  padding: 0 5px;
+  text-decoration: none;
+}
+
+#swip_header #header_actions a.last{
+  border-right: none;
+}
+
+#banner img {
+  float: left;
+}
+
+#columns {
+  background-color: #141;
+  min-height: 300px;
+  width: 100%;
+}
+
+#main {
+  float: left;
+  background: white;
+  min-height: 300px;
+  width: 82.4%;
+}
+
+#main #title_box {
+  padding: 10px;
+  border-bottom: 1px solid #DDCFA6;
+}
+
+#main #title_box #title_actions{
+  float: right;
+}
+
+#main div#title_box #title_actions a {
+  background-color:transparent;
+  background-image:url(/images/top_btn.png);
+  border:1px solid #CCBB77;
+  color:#333333;
+  cursor:pointer;
+  display:block;
+  font-size:1.1em;
+  font-weight:bold;
+  padding:5px 10px;
+  text-decoration:none;
+}
+
+#main div#title_box #title_name h1{
+  background-color:white;
+  color:#AA5533;
+  font-size:1.8em;
+  line-height:1.2em;
+  margin:0;
+  padding:0;
+}
+
+#main #inner_content {
+  padding: 20px;
+}
+
+#side {
+  float: left;
+  padding-left: 6px;
+  width: 17%;
+  background: #141;
+  color: #fff;
+  font-size: 1em;
+  min-height: 300px;
+}
+
+#side a {
+  color: #bfb;
+  font-size: small;
+}
+
+#items_list	{
+  border: 1px solid #9F9F9F;
+  width: 97%;
+  font-size: 1em;
+}
+
+#over_view {
+  color: white;
+  width: 98%;
+  border-color: white;
+  font-size: 1em;
+}
+
+#over_view caption{
+  font-weight: bold;
+}
+
+#over_view .current_user {
+  background-color: gold;
+  color: green;
+}
+
+#pay_structure {
+  margin-top: 20px;
+  background: #FFFF99 none repeat scroll 0 0;
+  color: #994433;
+  width: 98%;
+}
+
+#pay_structure .title{
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  float: left;
+}
+
+#pay_structure span.trans_user{
+  margin-left: 25px;
+  float: left;
+}
+
+
+/* Styles for order form */
+
+.money-form fieldset {
+  background: #efe;
+}
+
+.money-form legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.money-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+.money-form .submit {
+  margin-left: 5.5em;
+}
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#store .entry form, #store .entry form div {
+  display: inline;
+}
+
+#notice {
+  border: 1px solid #CCCC55;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #FFFFBB;
+  font: bold smaller sans-serif;
+}
+
+#error {
+  border: 1px solid #DD3C10;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #FFEBE8;
+  font: bold smaller sans-serif;
+}
+
+#search_container{
+  width: 100%;
+}
+
+#search_container form{
+  float: right;
+  margin-right: 10px;
+}
+
+#search_container input[type="text"]{
+  border-color:inherit;
+  font-size: 1em;
+  height:25px;
+  padding:2px;
+  width:230px;
+}
+
+#search_container .query_string{
+  color: blue;
+}
+
+#search_container input[type="image"]{
+  position: relative;
+  top: 10px;
+}
+
+#common_items_table{
+  width: 97%;
+  font-size: 1em;
+  border-color: #aaa;
+}
+
+#common_items_table td{
+  padding: 4px;
+}
