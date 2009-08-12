@@ -1,0 +1,27 @@
+<div id="overview">
+  <span id="overview_net_balance">
+    Your current balance is : Rs <%= current_user.net_balance %>
+  </span>
+
+  <div id="overview_groups">
+    <% unless current_user.groups.count > 0 %>
+      You have no groups yet
+    <% else %>
+      Your groups: <br>
+      <ul>
+      <% current_user.groups.each do |group| %>
+        <li><%= link_to group.name, group_path(group) %> : Rs.<%= group.get_group_user(current_user).balance %> </li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+<br><br><br><br>
+
+  <%= link_to "Create new group", new_group_path, :class => 'button' %>
+
+  
+
+</div>
+
+

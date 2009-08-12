@@ -42,6 +42,14 @@ a.button, input.button {
   width:auto;
 }
 
+form textarea{
+  height: 75px;
+}
+
+form label{
+  float: left;
+}
+
 /* Global styles */
 
 
