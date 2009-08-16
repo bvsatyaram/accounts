@@ -46,8 +46,13 @@ form textarea{
   height: 75px;
 }
 
-form label{
+label{
   float: left;
+  width: 135px;
+  text-align: right;
+  margin-right: 5px;
+  color: #337733;
+  font-weight: bold;
 }
 
 /* Global styles */

@@ -24,6 +24,13 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </p>
+  <% if @group %>
+  <p>
+    <%= label_tag "Group Name" %>
+    <b> <%= @group.name %> </b>
+    <%= hidden_field_tag :group_code, @group.code %>
+  </p>
+  <% end %>
   <p>
     <%= f.submit "Submit", :class => "button" %>
   </p>

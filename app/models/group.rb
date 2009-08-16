@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
   belongs_to :redeemed_by, :class_name => "User", :foreign_key => "redeemed_by_id"
 
   has_many :group_users, :dependent => :destroy
+  has_many :users, :through => :group_users
 
   validates_presence_of :name, :admin
 
