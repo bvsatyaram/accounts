@@ -1,4 +1,4 @@
 log/*.log
 tmp/**/*
 db/*.sql
-db/schema.rb
+nbproject

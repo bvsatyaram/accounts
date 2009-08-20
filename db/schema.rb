@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090811162203) do
+ActiveRecord::Schema.define(:version => 20090820151059) do
+
+  create_table "common_items", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "group_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "group_users", :force => true do |t|
     t.integer  "user_id"
@@ -26,19 +35,32 @@ ActiveRecord::Schema.define(:version => 20090811162203) do
     t.integer  "user_id"
     t.string   "name"
     t.text     "description"
-    t.string   "pass_phrase"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "redeemed_at"
+    t.integer  "redeemed_by_id"
+    t.datetime "expires_on"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.integer  "common_item_id"
+    t.integer  "user_id",                       :null => false
+    t.integer  "default_amount", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",                              :null => false
-    t.string   "email",                             :null => false
-    t.string   "crypted_password",                  :null => false
-    t.string   "password_salt",                     :null => false
-    t.string   "persistence_token",                 :null => false
-    t.integer  "login_count",        :default => 0, :null => false
-    t.integer  "failed_login_count", :default => 0, :null => false
+    t.string   "name",                               :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "perishable_token",   :default => "", :null => false
+    t.integer  "login_count",        :default => 0,  :null => false
+    t.integer  "failed_login_count", :default => 0,  :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
