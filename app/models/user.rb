@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :group_users, :dependent => :destroy
   has_many :groups, :through => :group_users
-
   has_many :admin_groups, :class_name => "Group"
+
+  has_many :items
 end

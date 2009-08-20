@@ -1,0 +1,2 @@
+class CommonItemsController < ApplicationController
+end

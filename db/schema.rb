@@ -12,10 +12,11 @@
 ActiveRecord::Schema.define(:version => 20090820151059) do
 
   create_table "common_items", :force => true do |t|
-    t.integer  "user_id",     :null => false
+    t.integer  "user_id",                    :null => false
     t.integer  "group_id"
     t.string   "name"
     t.string   "description"
+    t.integer  "cost",        :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

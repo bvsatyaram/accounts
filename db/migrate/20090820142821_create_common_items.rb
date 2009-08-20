@@ -1,10 +1,10 @@
 class CreateCommonItems < ActiveRecord::Migration
   def self.up
     create_table :common_items do |t|
-      t.integer :user_id, :null => false
-      t.integer :group_id
+      t.integer :group_user_id
       t.string :name
       t.string :description
+      t.integer :cost, :default => 0
       
       t.timestamps
     end
