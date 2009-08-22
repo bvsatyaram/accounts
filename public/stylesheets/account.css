@@ -222,11 +222,11 @@ label{
 
 /* Styles for order form */
 
-.money-form fieldset {
+fieldset {
   background: #efe;
 }
 
-.money-form legend {
+legend {
   color: #dfd;
   background: #141;
   font-family: sans-serif;

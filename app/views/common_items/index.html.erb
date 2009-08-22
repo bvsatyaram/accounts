@@ -1,29 +1,8 @@
-<% @title = @group.name.humanize %>
+<% @title = @group.name %>
 <% @page_action = link_to("Add new item", new_group_common_item_path(:group_id => @group.id)) %>
 
 <div id="group_show">
-  <div id="group_<%= @group.id %>">
-    <% unless @group.description.blank? %>
-      <p>
-        <%= label_tag "Descritpion" %> <%= @group.description %>
-      </p>
-    <% end %>
-
-    <% if current_user == @group.admin %>
-      <p>
-        <%= label_tag "Invite Url" %> <%= link_to new_user_url(:group_code => @group.code) %>
-      </p>
-      <%= link_to("Delete this group", group_path(@group), :method => :delete, :confirm => "Are you sure you want to delete this group?")%>
-    <% end %>
-    <h3>Members and their balances</h3>
-    <dl>
-      <% @group.group_users.each do |group_user| %>
-        <dt> <%= group_user.user.name %> </dt>
-        <dd> Rs. <%= group_user.balance %> </dd>
-      <% end %>
-    </dl>
-  </div>
-
+  <%= render :partial => "groups/group_details" %>
   <div>
     <span style="float:left;"><%= page_entries_info(@common_items,  :entry_name => 'items') %></span>
     <span style="float:right;"><%= will_paginate @common_items %></span>
@@ -62,16 +41,15 @@
         <td>Total Amounts Spent</td>
         <td>Rs.<%= @total_cost %></td>
         <% @users.each do |user| %>
-          <td>Rs.<%= display_my_total(user) %></td>
+          <td>Rs.<%= @group.get_group_user(user).items.collect(&:default_amount).sum %></td>
         <% end %>
         <td><small><%= Time.now.strftime('%B, %d %Y') %></small></td>
       </tr>
     </table>
     <span style="float:right;"><%= will_paginate @common_items %></span>
   </div>
-
-
 </div>
+
 <style>
   input[type="text"]{
     border-color: green;

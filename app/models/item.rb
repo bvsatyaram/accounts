@@ -15,7 +15,7 @@ class Item < ActiveRecord::Base
   end
 
   def group_user
-    self.common_item.group_user
+    self.common_item.group.get_group_user(self.user)
   end
 
   private
@@ -23,12 +23,10 @@ class Item < ActiveRecord::Base
   def increment_balance
     self.user.update_attribute(:net_balance, self.user.net_balance + self.default_amount)
     self.group_user.update_attribute(:balance, self.group_user.balance + self.default_amount)
-    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
   end
 
   def decrement_balance
     self.user.update_attribute(:net_balance, self.user.net_balance - self.default_amount)
     self.group_user.update_attribute(:balance, self.group_user.balance - self.default_amount)
-    puts "========================================================"
   end
 end

@@ -46,9 +46,7 @@ class CommonItemsController < ApplicationController
   def destroy
     @common_item = CommonItem.find(params[:id])
     if @common_item.destroy
-      flash[:notice] = "Delete ayyipoyindi.... "
-    else
-      flash[:notice] = "Malli try chey...."
+      flash[:notice] = "Successfully deleted"
     end
     redirect_to group_common_items_path(@group)
   end
