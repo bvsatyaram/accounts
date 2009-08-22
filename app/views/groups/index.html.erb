@@ -9,14 +9,22 @@
       <% @groups.each do |group| %>
         <div id="group_<%= group.id %>">
           <h2><%= link_to group.name, group_path(group) %> </h2>
+          <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => group.get_group_user(current_user), :full_view => false} %>
+
           <%= link_to "Add new common item", new_group_common_item_path(group), :class => "button", :style => "float:right" %>
-          <h3>Members and their balances</h3>
-          <dl>
+          <table>
+            <tr>
+              <th> Group members </th>
+              <th> Credit </th>
+            </tr>
             <% group.group_users.each do |group_user| %>
-              <dt> <%= group_user.user.name %> </dt>
-              <dd> Rs. <%= group_user.balance %> </dd>
+              <tr>
+                <td> <%= group_user.user.name %> </td>
+                <td> Rs. <%= group_user.balance %> </td>
+              </tr>
             <% end %>
-          </dl>
+          </table>
+
         </div>
         <hr>
       <% end %>

@@ -1,6 +1,6 @@
 <fieldset class="group_details">
   <legend>Group Details</legend>
-  
+  <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => (current_user == @group.admin)} %>
 
   <% unless @group.description.blank? %>
     <div>
@@ -32,10 +32,6 @@
 <style>
   #group_show .group_details{
     margin-bottom: 10px;
-  }
-
-  #group_show .group_details table{
-    font-size: 1em;
   }
 
   #group_show .group_details div{

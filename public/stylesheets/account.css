@@ -42,6 +42,10 @@ a.button, input.button {
   width:auto;
 }
 
+table{
+    font-size: 1em;
+}
+
 dt{
   float: left;
   margin-right: 10px;

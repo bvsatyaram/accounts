@@ -1,27 +1,27 @@
 class PaySystem
-  attr_accessor :user, :group, :payers, :receivers
+  attr_accessor :group_user, :group, :payers, :receivers
 
-  def initialize(user, group)
-    self.user = user
-    self.group = group
+  def initialize(group_user)
+    self.group_user = group_user
+    self.group = group_user.group
     self.payers = Hash.new
     self.receivers = Hash.new
     self.get_payers_receivers
   end
 
-  def self.user_pay_structure(user, group)
-    ps = self.new(user, group)
-    return nil if user.balance == 0
+  def self.user_pay_structure(group_user)
+    ps = self.new(group_user)
+    return nil if group_user.balance == 0
     ps.calculate
-    return (user.balance > 0) ? ps.payers[user.id] : ps.receivers[user.id]
+    return (group_user.balance > 0) ? ps.payers[group_user.id] : ps.receivers[group_user.id]
   end
 
   def get_payers_receivers
-    self.group.group_users.find(:all, :conditions => "balance > 0", :order => "balance DESC").each do |user|
-      self.payers[user.id] = PayUser.new(user)
+    self.group.group_users.find(:all, :conditions => "balance > 0", :order => "balance DESC").each do |group_user|
+      self.payers[group_user.id] = PayUser.new(group_user)
     end
-    self.group.group_users.find(:all, :conditions => "balance < 0", :order => "balance ASC").each do |user|
-      self.receivers[user.id] = PayUser.new(user)
+    self.group.group_users.find(:all, :conditions => "balance < 0", :order => "balance ASC").each do |group_user|
+      self.receivers[group_user.id] = PayUser.new(group_user)
     end
   end
 
