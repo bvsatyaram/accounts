@@ -6,19 +6,29 @@ class Item < ActiveRecord::Base
   after_create :increment_balance
   after_destroy :decrement_balance
 
-  def self.create_items(users, common_item)
+  def self.create_items(user_ids, common_item)
+    users = common_item.group.users.find_all_by_id(user_ids)
     default_amount = (common_item.cost.to_f/users.size.to_f).round
     users.each do |user|
       @item = user.items.create(:default_amount => default_amount, :common_item => common_item, :name => common_item.name)
     end
   end
 
+  def group_user
+    self.common_item.group_user
+  end
+
   private
+  
   def increment_balance
-    self.user.update_attribute(:balance, self.user.balance + self.default_amount)
+    self.user.update_attribute(:net_balance, self.user.net_balance + self.default_amount)
+    self.group_user.update_attribute(:balance, self.group_user.balance + self.default_amount)
+    puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
   end
 
   def decrement_balance
-    self.user.update_attribute(:balance, self.user.balance - self.default_amount)
+    self.user.update_attribute(:net_balance, self.user.net_balance - self.default_amount)
+    self.group_user.update_attribute(:balance, self.group_user.balance - self.default_amount)
+    puts "========================================================"
   end
 end

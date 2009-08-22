@@ -11,8 +11,6 @@
       <div id="header_actions">
         <% if current_user %>
           <%= link_to 'My groups', groups_path %>
-          <%= link_to 'Add a new Common Item', "#new_common_item_path" %>
-          <%= link_to 'Show all Items', "#common_items_path" %>
           <%= link_to 'Logout', logout_path, :class => "last" %>
         <% else %>
           <%= link_to 'Login', login_path, :class => "last" %>

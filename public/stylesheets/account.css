@@ -42,6 +42,11 @@ a.button, input.button {
   width:auto;
 }
 
+dt{
+  float: left;
+  margin-right: 10px;
+  }
+
 form textarea{
   height: 75px;
 }
@@ -155,6 +160,7 @@ label{
 
 #main #inner_content {
   padding: 20px;
+  width: 95%;
 }
 
 #side {

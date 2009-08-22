@@ -2,9 +2,8 @@ class CommonItem < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   belongs_to :group_user
 
-  validates_presence_of :cost
+  validates_presence_of :cost, :name
   validates_numericality_of :cost
-  validates_presence_of :name
   validate :cost_must_be_greater_than_zero
 
   after_create :decrement_user_balance
@@ -25,9 +24,7 @@ class CommonItem < ActiveRecord::Base
       :item_user_name     => 10,
       :cost               => 20
     }
-
     #set_property :delta => true
-
   end
 
   def self.per_page
@@ -48,12 +45,17 @@ class CommonItem < ActiveRecord::Base
   end
 
   private
+  
   def decrement_user_balance
-    self.user.update_attribute(:balance, self.user.balance - self.cost)
+    self.user.update_attribute(:net_balance, self.user.net_balance - self.cost)
+    self.group_user.update_attribute(:balance, self.group_user.balance - self.cost)
+    puts "1111111111111111111111111111111111111111111"
   end
 
   def increment_user_balance
-    self.user.update_attribute(:balance, self.user.balance + self.cost)
+    self.user.update_attribute(:net_balance, self.user.net_balance + self.cost)
+    self.group_user.update_attribute(:balance, self.group_user.balance + self.cost)
+    puts "22222222222222222222222222222222222222222222222"
   end
 
 end

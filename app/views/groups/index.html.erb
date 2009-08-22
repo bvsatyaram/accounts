@@ -1,10 +1,3 @@
-<style>
-  dt{
-    float: left;
-    margin-right: 10px;
-  }
-</style>
-
 <% @title = "Your groups" %>
 <% @page_action = link_to("Create new group", new_group_path) %>
 
@@ -16,6 +9,7 @@
       <% @groups.each do |group| %>
         <div id="group_<%= group.id %>">
           <h2><%= link_to group.name, group_path(group) %> </h2>
+          <%= link_to "Add new common item", new_group_common_item_path(group), :class => "button", :style => "float:right" %>
           <h3>Members and their balances</h3>
           <dl>
             <% group.group_users.each do |group_user| %>

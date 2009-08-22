@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.groups.find(params[:id])
+    redirect_to group_common_items_path(@group)
   end
 
   def destroy

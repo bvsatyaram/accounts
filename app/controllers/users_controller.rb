@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to groups_path
+    redirect_to items_path
   end
 
   def index

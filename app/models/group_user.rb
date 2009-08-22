@@ -6,5 +6,4 @@ class GroupUser < ActiveRecord::Base
   has_many :common_items
 
   validates_uniqueness_of :user_id, :scope => [:group_id]
-
 end
