@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   has_many :admin_groups, :class_name => "Group"
 
   has_many :items
+
+  attr_accessor :password
 end
