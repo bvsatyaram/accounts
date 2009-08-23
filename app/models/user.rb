@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :items
 
+  # This is a fix for heroku
   attr_accessor :password
 end
