@@ -1,56 +1,33 @@
-<% if full_view %>
-  <% pay_structure = PaySystem.new(group_user) %>
-  <% pay_structure.calculate %>
-  <% pay_structure.payers.keys.each do |group_user_id| %>
-    <% group_user = GroupUser.find(group_user_id) %>
+<% if group_user.group.group_users.count > 1 %>
+  <% if full_view %>
+    <% pay_structure = PaySystem.new(group_user) %>
+    <% pay_structure.calculate %>
+    <% pay_structure.payers.keys.each do |group_user_id| %>
+      <% group_user = GroupUser.find(group_user_id) %>
+      <div id="pay_structure" class="clearfix">
+        <span class="title"> <%= group_user.user.name %> </span>
+        <%= transaction_statement(group_user) %>
+      </div>
+    <% end %>
+
+  <% else %>
     <div id="pay_structure" class="clearfix">
-      <span class="title"> <%= group_user.user.name %> </span>
-      <% if group_user.balance > 0 %>
-        <% pay_pattern = "Pay" %>
-        <% string = "to" %>
-      <% else %>
-        <% pay_pattern = "Get" %>
-        <% string = "from" %>
-      <% end %>
-      <% trans = PaySystem.user_pay_structure(group_user).transaction_partners %>
-      <% trans.keys.each do |user| %>
-        <span class="trans_user">
-          <%= "#{pay_pattern} Rs. #{trans[user]} #{string}" %> <b><%= group_user.user.name %></b>
-        </span>
-      <% end %>
+      <span> Suggested transaction: </span><br>
+      <%= transaction_statement(group_user) %>
     </div>
   <% end %>
-
-<% else %>
-
-  <% transactions = PaySystem.user_pay_structure(group_user).transaction_partners %>
-  <div id="pay_structure" class="clearfix">
-    <span> Suggested transaction: </span><br>
-
-    <% if group_user.balance > 0 %>
-      <% pay_pattern = "Pay" %>
-      <% string = "to" %>
-    <% else %>
-      <% pay_pattern = "Get" %>
-      <% string = "from" %>
-    <% end %>
-
-    <% transactions.keys.each do |group_user| %>
-      <span class="trans_user"><%= "#{pay_pattern} Rs. #{transactions[group_user]} #{string} #{group_user.user.name}" %> </span> <br>
-    <% end %>
-  </div>
 <% end %>
+
 <style>
-  #pay_structure {
-    margin-top: 20px;
-    background: #FFFF99 none repeat scroll 0 0;
-    color: #994433;
-    width: 98%;
-  }
+#pay_structure {
+  margin-top: 20px;
+  background: #FFFF99 none repeat scroll 0 0;
+  color: #994433;
+  width: 98%;
+}
 
-  #pay_structure span.trans_user{
-    margin-left: 25px;
-    float: left;
-  }
-
+#pay_structure span.trans_user{
+  margin-left: 25px;
+  float: left;
+}
 </style>
