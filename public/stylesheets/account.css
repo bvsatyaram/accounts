@@ -332,6 +332,11 @@ legend {
   top: 10px;
 }
 
+.group_details table#group_details_table{
+  width: 300px;
+  float: left;
+}
+
 #common_items_table{
   width: 97%;
   font-size: 1em;
