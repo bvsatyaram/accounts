@@ -27,12 +27,12 @@ class PaySystem
 
   def highest_payer
     hp = self.payers.values.sort{|v, u| u.new_balance <=> v.new_balance }[0]
-    return hp if hp.new_balance > 0
+    return hp if hp && hp.new_balance > 0
   end
 
   def highest_receiver
     hr = self.receivers.values.sort{|v, u| v.new_balance <=> u.new_balance }[0]
-    return hr if hr.new_balance < 0
+    return hr if hr && hr.new_balance < 0
   end
 
   def calculate
