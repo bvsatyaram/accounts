@@ -11,10 +11,12 @@
     <% end %>
 
   <% else %>
-    <div id="pay_structure" class="clearfix">
-      <span> Suggested transaction: </span><br>
-      <%= transaction_statement(group_user) %>
-    </div>
+    <% if group_user.balance != 0 %>
+      <div id="pay_structure" class="clearfix">
+        <span> Suggested transaction: </span><br>
+        <%= transaction_statement(group_user) %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
