@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => [:new, :create]
+  before_filter :load_user, :only => [:edit, :update, :show]
+  allow :exec => :authorize_user, :only => [:edit, :update]
 
   def new
     if params[:group_code]
@@ -25,11 +27,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfull updated your profile"
       redirect_to user_path(@user)
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to items_path
+    
   end
 
   def index
@@ -70,5 +71,13 @@ class UsersController < ApplicationController
   def create_group_user_and_redirect
     @group.users << @user if @group
     redirect_to user_url(@user)
+  end
+
+  def load_user
+    @user = User.find(params[:id])
+  end
+
+  def authorize_user
+    (@user == current_user) || (current_user.app_admin?)
   end
 end

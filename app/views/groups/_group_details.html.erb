@@ -22,7 +22,7 @@
     </tr>
     <% @group.group_users.each do |group_user| %>
       <tr>
-        <td> <%= group_user.user.name %> </td>
+        <td> <%= link_to group_user.user.display_name, user_path(group_user.user) %> </td>
         <td> Rs. <%= group_user.balance %> </td>
       </tr>
     <% end %>

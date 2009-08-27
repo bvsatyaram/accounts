@@ -12,7 +12,7 @@
         <td><b>Item Name</b></td>
         <td><b>Cost (paid by)</b></td>
         <% @users.each do |user| %>
-          <td><b><%= truncate(user.name, 8, "..") %>'s share</b></td>
+          <td><b><%= user.display_name %>'s share</b></td>
         <% end %>
         <td><b>Date</b></td>
       </tr>
