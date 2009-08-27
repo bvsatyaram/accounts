@@ -22,7 +22,6 @@ body{
   font-size: 75%;
   line-height: 17px;
   margin: 0 auto;
-  width: 1024px;
 }
 
 a.button, input.button {
@@ -331,6 +330,11 @@ legend {
 #search_container input[type="image"]{
   position: relative;
   top: 10px;
+}
+
+.group_details table#group_details_table{
+  width: 300px;
+  float: left;
 }
 
 #common_items_table{

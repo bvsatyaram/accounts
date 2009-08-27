@@ -3,7 +3,7 @@ module ApplicationHelper
 
   def user_transaction_partners(group_user)
     payer = PaySystem.user_pay_structure(group_user)
-    payer.blank? ? [] : payer.transaction_partners
+    payer.blank? ? {} : payer.transaction_partners
   end
 
   def transaction_statement(group_user)
