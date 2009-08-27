@@ -30,7 +30,7 @@
       <% @common_items.each do |common_item| %>
         <tr>
           <td><%= common_item.name %>&nbsp;&nbsp;<small><%= show_delete_link(common_item)%></small></td>
-          <td style="color:red;">Rs.<%= common_item.cost %> (<%= common_item.user.name %>)</td>
+          <td style="color:red;">Rs.<%= common_item.cost %> (<%= common_item.user.display_name %>)</td>
           <% @users.each do |user| %>
             <td><%= display_amount(user, common_item) %></td>
           <% end %>
