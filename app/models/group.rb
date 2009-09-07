@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   belongs_to :admin, :class_name => 'User', :foreign_key => :user_id
   belongs_to :redeemed_by, :class_name => "User", :foreign_key => "redeemed_by_id"
 
-  has_many :group_users, :dependent => :destroy
+  has_many :group_users, :dependent => :destroy, :order => "balance DESC"
   has_many :users, :through => :group_users
   has_many :common_items, :through => :group_users, :order => "id DESC"
 
