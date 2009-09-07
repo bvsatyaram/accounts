@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :group_users
   has_many :admin_groups, :class_name => "Group"
   has_many :items
+
+  attr_protected :app_admin
+
+  def display_name
+    self.nick_name || self.name
+  end
 end
