@@ -52,8 +52,10 @@ class CommonItem < ActiveRecord::Base
   end
 
   def increment_user_balance
-    self.user.update_attribute(:net_balance, self.user.net_balance + self.cost)
-    self.group_user.update_attribute(:balance, self.group_user.balance + self.cost) if self.group_user
+    if self.group_user
+      self.user.update_attribute(:net_balance, self.user.net_balance + self.cost)
+      self.group_user.update_attribute(:balance, self.group_user.balance + self.cost)
+    end  
   end
 
 end
