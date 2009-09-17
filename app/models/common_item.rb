@@ -2,7 +2,7 @@ class CommonItem < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   belongs_to :group_user
 
-  validates_presence_of :cost, :name
+  validates_presence_of :cost, :name, :group_user
   validates_numericality_of :cost
   validate :cost_must_be_greater_than_zero
 
@@ -48,7 +48,7 @@ class CommonItem < ActiveRecord::Base
   
   def decrement_user_balance
     self.user.update_attribute(:net_balance, self.user.net_balance - self.cost)
-    self.group_user.update_attribute(:balance, self.group_user.balance - self.cost)
+    self.group_user.update_attribute(:balance, self.group_user.balance - self.cost) if self.group_user
   end
 
   def increment_user_balance
