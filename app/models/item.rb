@@ -15,7 +15,7 @@ class Item < ActiveRecord::Base
   end
 
   def group_user
-    self.common_item.group.get_group_user(self.user) if self.common_item
+    self.common_item.group.get_group_user(self.user) if self.common_item && self.common_item.group_user
   end
 
   private
