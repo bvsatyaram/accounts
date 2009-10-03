@@ -1,9 +1,5 @@
 <div id="overview">
-  <span id="overview_net_balance">
-    Your net balance is : Rs <%= current_user.net_balance %>
-  </span>
-   <br> <br>
-
+  <br>
   <div id="overview_groups">
     <% unless current_user.groups.count > 0 %>
       You have no groups yet
@@ -14,21 +10,20 @@
         <li><%= link_to truncate(group.name, :length => 15), group_path(group) %> : Rs.<%= group.get_group_user(current_user).balance %> </li>
       <% end %>
       </ul>
+      <span id="overview_net_balance">
+        Your net balance is : &nbsp;Rs <%= current_user.net_balance %>
+      </span>
     <% end %>
   </div>
 
-<br><br><br>
-  
+<br/><br/><br/>
+
   <%= link_to "My Items", root_path %><br>
   <%= link_to "My Groups", groups_path %><br>
-  <%= link_to "My Profile", user_path(current_user) %><br>
-  <%= link_to "Create new group", new_group_path %>
-
 </div>
 
 <style>
-ul{
-  margin-top: 0px;
-  padding: 0 0 0 10px;
-}
+  #overview_groups ul{
+    padding: 0 0 10px 10px;
+  }
 </style>

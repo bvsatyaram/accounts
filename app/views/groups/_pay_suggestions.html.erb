@@ -2,34 +2,32 @@
   <% if full_view %>
     <% pay_structure = PaySystem.new(group_user) %>
     <% pay_structure.calculate %>
-    <% pay_structure.payers.keys.each do |group_user_id| %>
-      <% group_user = GroupUser.find(group_user_id) %>
-      <div id="pay_structure" class="clearfix">
-        <span class="title"> <%= group_user.user.name %> </span>
-        <%= transaction_statement(group_user) %>
-      </div>
-    <% end %>
-
+    <% receiver_group_users = GroupUser.find(pay_structure.receivers.keys) %>
+    <table border="1px solid #AAA" id="full_pay_details">
+      <tr>
+        <th><dim>Payers / Receivers </dim></th>
+        <% receiver_group_users.each do |group_user| %>
+          <th> <span class="title"> <%= group_user.name %> </span> </th>
+        <% end %>
+      </tr>
+      <% pay_structure.payers.keys.each do |group_user| %>
+        <% payer = pay_structure.payers[group_user] %>
+        <tr>
+          <td> <%= payer.group_user.name %> </td>
+          <% receiver_group_users.each do |group_user| %>
+            <td> <%= payer.transaction_partners[group_user] || "-" %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
   <% else %>
     <% if group_user.balance != 0 %>
       <div id="pay_structure" class="clearfix">
-        <span> Suggested transaction: </span><br>
-        <%= transaction_statement(group_user) %>
+        <span class="label"> Suggested transaction: </span>
+        <div class="transactions">
+          <%= transaction_statement(group_user) %>
+        </div>
       </div>
     <% end %>
   <% end %>
 <% end %>
-
-<style>
-#pay_structure {
-  margin-top: 20px;
-  background: #FFFF99 none repeat scroll 0 0;
-  color: #994433;
-  width: 98%;
-}
-
-#pay_structure span.trans_user{
-  margin-left: 25px;
-  float: left;
-}
-</style>

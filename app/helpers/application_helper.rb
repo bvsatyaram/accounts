@@ -18,6 +18,7 @@ module ApplicationHelper
           "Get Rs. #{trans[trans_user]} from <b> #{user_name} </b>"
         end
       end
+      string += "<br>"
     end
     return string
   end

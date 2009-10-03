@@ -24,6 +24,38 @@ body{
   margin: 0 auto;
 }
 
+/* Global styles */
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+dim {
+  color: #888;
+}
+
+table{
+  font-size: 1em;
+}
+
+dt{
+  float: left;
+  margin-right: 10px;
+  }
+
+form textarea{
+  height: 75px;
+}
+
+label{
+  float: left;
+  width: 135px;
+  text-align: right;
+  margin-right: 10px;
+  color: #337733;
+  font-weight: bold;
+}
+
 a.button, input.button {
   background:transparent url(/images/btn_bg.png) repeat-x scroll 0 0;
   border:1px solid #C5701B;
@@ -40,31 +72,6 @@ a.button, input.button {
   text-decoration:none;
   width:auto;
 }
-
-table{
-    font-size: 1em;
-}
-
-dt{
-  float: left;
-  margin-right: 10px;
-  }
-
-form textarea{
-  height: 75px;
-}
-
-label{
-  float: left;
-  width: 135px;
-  text-align: right;
-  margin-right: 5px;
-  color: #337733;
-  font-weight: bold;
-}
-
-/* Global styles */
-
 
 /* Styles for main page */
 
@@ -181,71 +188,17 @@ label{
   font-size: small;
 }
 
-#items_list	{
-  border: 1px solid #9F9F9F;
-  width: 97%;
-  font-size: 1em;
-}
-
-#over_view {
-  color: white;
-  width: 98%;
-  border-color: white;
-  font-size: 1em;
-}
-
-#over_view caption{
-  font-weight: bold;
-}
-
-#over_view .current_user {
-  background-color: gold;
-  color: green;
-}
-
-#pay_structure {
-  margin-top: 20px;
-  background: #FFFF99 none repeat scroll 0 0;
-  color: #994433;
-  width: 98%;
-}
-
-#pay_structure .title{
-  font-size: 1.1em;
-  font-weight: bold;
-  margin-bottom: 5px;
-  float: left;
-}
-
-#pay_structure span.trans_user{
-  margin-left: 25px;
-  float: left;
-}
-
-
-/* Styles for order form */
+/************** Styles for order form ***************/
 
 fieldset {
-  background: #efe;
+  background: #EFEEFE;
 }
 
 legend {
-  color: #dfd;
+  color: #DFDDFD;
   background: #141;
   font-family: sans-serif;
   padding: 0.2em 1em;
-}
-
-.money-form label {
-  width: 5em;
-  float: left;
-  text-align: right;
-  margin-right: 0.5em;
-  display: block;
-}
-
-.money-form .submit {
-  margin-left: 5.5em;
 }
 
 /* The error box */
@@ -286,10 +239,6 @@ legend {
   list-style: square;
 }
 
-#store .entry form, #store .entry form div {
-  display: inline;
-}
-
 #notice {
   border: 1px solid #CCCC55;
   padding: 1em;
@@ -304,45 +253,4 @@ legend {
   margin-bottom: 2em;
   background-color: #FFEBE8;
   font: bold smaller sans-serif;
-}
-
-#search_container{
-  width: 100%;
-}
-
-#search_container form{
-  float: right;
-  margin-right: 10px;
-}
-
-#search_container input[type="text"]{
-  border-color:inherit;
-  font-size: 1em;
-  height:25px;
-  padding:2px;
-  width:230px;
-}
-
-#search_container .query_string{
-  color: blue;
-}
-
-#search_container input[type="image"]{
-  position: relative;
-  top: 10px;
-}
-
-.group_details table#group_details_table{
-  width: 300px;
-  float: left;
-}
-
-#common_items_table{
-  width: 97%;
-  font-size: 1em;
-  border-color: #aaa;
-}
-
-#common_items_table td{
-  padding: 4px;
 }

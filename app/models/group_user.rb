@@ -10,4 +10,8 @@ class GroupUser < ActiveRecord::Base
   def items
     self.user.items.find_all_by_common_item_id(self.group.common_items.collect(&:id))
   end
+
+  def name(full_name = false)
+    full_name ? self.user.name : self.user.display_name
+  end
 end

@@ -1,7 +1,6 @@
 <fieldset class="group_details">
   <legend>Group Details</legend>
   <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => (current_user == @group.admin)} %>
-
   <% unless @group.description.blank? %>
     <div>
       <span>Descritpion</span> <%= @group.description %>
@@ -28,23 +27,3 @@
     <% end %>
   </table>
 </fieldset>
-
-<style>
-  #group_show .group_details{
-    margin-bottom: 10px;
-  }
-
-  #group_show .group_details div{
-    width: 100%;
-    float: left;
-    margin: 0 0 5px 0;
-  }
-
-  #group_show .group_details span{
-    float: left;
-    color: #337733;
-    font-weight: bold;
-    margin: 5px 5px 0px 0px;
-    width: 100%;
-  }
-</style>

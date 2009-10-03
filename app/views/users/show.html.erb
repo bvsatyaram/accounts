@@ -8,7 +8,7 @@
   </div>
   <div>
   <%= label_tag "Nick Name" %>
-  <%= @user.nick_name || "<i>Not specified</i>"%>
+  <%= @user.nick_name || "<dim><i>Not specified</i></dim>"%>
   </div>
   <div>
   <%= label_tag "Email" %>
@@ -18,25 +18,8 @@
     <%= label_tag "Groups" %>
     <ul class="clearfix">
     <%  @user.groups.each do |group| %>
-      <li class="groups_list"><%= group.name %></li>
+      <li class="groups_list"><%= link_to(group.name, group_path(group)) %></li>
     <% end %>
     </ul>
   </div>
 </div>
-
-<style>
-  li.groups_list{
-    float: left;
-    margin-left: 20px;
-  }
-
-  #user_show div{
-    float: left;
-    width: 60%;
-    margin: 10px;
-  }
-
-  #user_show i{
-    color : #888;
-  }
-</style>

@@ -40,15 +40,15 @@ class PaySystem
     hr = self.highest_receiver
     if hp && hr
       if hp.new_balance > (-1 * hr.new_balance)
-        hp.transaction_partners[hr.user] = -1 * hr.new_balance
-        hr.transaction_partners[hp.user] =  -1 * hr.new_balance
+        hp.transaction_partners[hr.group_user] = -1 * hr.new_balance
+        hr.transaction_partners[hp.group_user] =  -1 * hr.new_balance
 
         hp.new_balance = hp.new_balance + hr.new_balance
         hr.new_balance = 0
         
       else
-        hr.transaction_partners[hp.user] = hp.new_balance
-        hp.transaction_partners[hr.user] = hp.new_balance
+        hr.transaction_partners[hp.group_user] = hp.new_balance
+        hp.transaction_partners[hr.group_user] = hp.new_balance
 
         hr.new_balance = hp.new_balance + hr.new_balance
         hp.new_balance = 0
@@ -59,11 +59,11 @@ class PaySystem
   end
 
   class PayUser
-    attr_accessor :user, :new_balance, :transaction_partners
+    attr_accessor :group_user, :new_balance, :transaction_partners
 
-    def initialize(user)
-      self.user = user
-      self.new_balance = user.balance
+    def initialize(group_user)
+      self.group_user = group_user
+      self.new_balance = group_user.balance
       self.transaction_partners = Hash.new
     end
   end

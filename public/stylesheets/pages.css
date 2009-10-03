@@ -1,0 +1,104 @@
+/* 
+    Document   : pages
+    Created on : 3 Oct, 2009, 8:02:04 PM
+    Author     : mrudhu
+    Description: Specific to individual pages
+*/
+
+/************** Pay Structure ****************************************/
+#pay_structure {
+  margin-top: 20px;
+  background: #FFFF99 none repeat scroll 0 0;
+  color: #994433;
+  width: 98%;
+}
+
+#pay_structure .title{
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  float: left;
+}
+
+#pay_structure span.trans_user{
+  margin-left: 25px;
+  float: left;
+}
+
+#pay_structure span.label{
+  float:left;
+}
+
+#pay_structure div.transactions{
+  float:left;
+}
+
+#full_pay_details{
+  background-color: #FFFF99;
+}
+
+#items_list	{
+  border: 1px solid #9F9F9F;
+  width: 97%;
+  font-size: 1em;
+}
+
+/*************************** Group Show ***************************************/
+#group_show .group_details{
+  margin-bottom: 10px;
+}
+
+#group_show .group_details div{
+  width: 100%;
+  float: left;
+  margin: 0 0 5px 0;
+}
+
+#group_show .group_details span{
+  float: left;
+  color: #337733;
+  font-weight: bold;
+  margin: 5px 5px 0px 0px;
+  width: 100%;
+}
+
+#group_show .group_details table#group_details_table{
+  width: 300px;
+  float: left;
+}
+
+/*************************** Common Items *************************************/
+#common_items_table{
+  width: 97%;
+  font-size: 1em;
+  border-color: #aaa;
+}
+
+#common_items_table td{
+  padding: 4px;
+}
+
+/*************************** New Common Item **********************************/
+
+#new_common_item label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+#new_common_item .submit {
+  margin-left: 5.5em;
+}
+
+/*************************** User Show ****************************************/
+#user_show ul li.groups_list{
+  margin-left: 20px;
+}
+
+#user_show div{
+  float: left;
+  width: 60%;
+  margin: 10px;
+}
