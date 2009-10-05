@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
-
+  
   def new
-    @group = Group.new()
+    @group = current_user.groups.new()
   end
 
   def create
@@ -20,14 +20,6 @@ class GroupsController < ApplicationController
     @groups = current_user.groups
   end
 
-  def edit
-    
-  end
-
-  def update
-    
-  end
-
   def show
     @group = current_user.groups.find(params[:id])
     redirect_to group_common_items_path(@group)
@@ -39,5 +31,5 @@ class GroupsController < ApplicationController
     flash[:notice] = "Your group has been successfully destroyed"
     redirect_to groups_path
   end
-
+  
 end

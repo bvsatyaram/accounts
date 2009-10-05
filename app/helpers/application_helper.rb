@@ -2,7 +2,8 @@
 module ApplicationHelper
 
   def user_transaction_partners(group_user)
-    payer = PaySystem.user_pay_structure(group_user)
+    pay_structure = PaySuggestions::PaySystem.create(group_user.group)
+    payer = pay_structure.users[group_user.id]
     payer.blank? ? {} : payer.transaction_partners
   end
 

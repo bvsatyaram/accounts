@@ -1,7 +1,6 @@
 <% if group_user.group.group_users.count > 1 %>
   <% if full_view %>
-    <% pay_structure = PaySystem.new(group_user) %>
-    <% pay_structure.calculate %>
+    <% pay_structure = PaySuggestions::PaySystem.create(group_user.group) %>
     <% receiver_group_users = GroupUser.find(pay_structure.receivers.keys) %>
     <table border="1px solid #AAA" id="full_pay_details">
       <tr>

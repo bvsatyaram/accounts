@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :require_login
   
   helper_method :current_user
-    
+  
   protected
 
   def current_user_session

@@ -38,7 +38,6 @@ class CommonItemsController < ApplicationController
 
   def index
     @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "id desc")
-    @users = @group.users
     @total_cost = @common_items? @common_items.collect(&:cost).sum : 0
     @new_common_item = @group.common_items.new(:group_user_id => @group_user.id)
   end
@@ -70,4 +69,5 @@ class CommonItemsController < ApplicationController
   def check_auth
     @group.users.include?(current_user)
   end
+  
 end

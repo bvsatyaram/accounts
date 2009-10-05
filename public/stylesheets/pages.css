@@ -102,3 +102,23 @@
   width: 60%;
   margin: 10px;
 }
+
+/*************************** Group Show ***************************************/
+#group_show input[type="text"]{
+    border-color: green;
+  }
+
+ #group_show input[type="submit"]{
+    background-image:url(/images/icon-add.gif);
+    background-repeat: no-repeat;
+    background-color: #336633;
+    padding: 0px 1px 0px 22px;
+    border-color: #336633;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+  }

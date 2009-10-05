@@ -11,7 +11,7 @@
       <tr>
         <td><b>Item Name</b></td>
         <td><b>Cost (paid by)</b></td>
-        <% @users.each do |user| %>
+        <% @group.users.each do |user| %>
           <td><b><%= user.display_name %>'s share</b></td>
         <% end %>
         <td><b>Date</b></td>
@@ -21,7 +21,7 @@
           <%= hidden_field_tag :index, true %>
           <td><%= f.text_field :name, :size => 20 %></td>
           <td><%= f.text_field :cost, :size => 5, :style => "border-color: white;" %></td>
-          <% @users.each do |user| %>
+          <% @group.users.each do |user| %>
             <td><%= text_field :item_cost, user.id, :size => 5, :onkeyup => "update_cost()", :onblur => "update_cost()", :onclick => "update_cost()", :onkeydown => "update_cost()" %></td>
           <% end %>
           <td><%= f.submit "Create", :onclick => "return update_final_cost()" %></td>
@@ -31,7 +31,7 @@
         <tr>
           <td><%= common_item.name %>&nbsp;&nbsp;<small><%= show_delete_link(common_item)%></small></td>
           <td style="color:red;">Rs.<%= common_item.cost %> (<%= common_item.user.display_name %>)</td>
-          <% @users.each do |user| %>
+          <% @group.users.each do |user| %>
             <td><%= display_amount(user, common_item) %></td>
           <% end %>
           <td><small><%= common_item.created_at.strftime('%b, %d %Y') %></small></td>
@@ -40,7 +40,7 @@
       <tr style="color:#000099;font-weight:bold;">
         <td>Total expenditure</td>
         <td>Rs.<%= @total_cost %></td>
-        <% @users.each do |user| %>
+        <% @group.users.each do |user| %>
           <td>Rs.<%= @group.get_group_user(user).items.collect(&:default_amount).sum %></td>
         <% end %>
         <td><small><%= Time.now.strftime('%b, %d %Y') %></small></td>
@@ -50,34 +50,12 @@
   </div>
 </div>
 
-<style>
-  input[type="text"]{
-    border-color: green;
-  }
-
-  input[type="submit"]{
-    background-image:url(/images/icon-add.gif);
-    background-repeat: no-repeat;
-    background-color: #336633;
-    padding: 0px 1px 0px 22px;
-    border-color: #336633;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    -moz-border-radius-topleft: 10px;
-    -moz-border-radius-topright: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    -moz-border-radius-bottomright: 10px;
-  }
-</style>
-
-
 <script>
   $('common_item_cost').value = 0;
   $('common_item_cost').disabled = true;
   elements = [];
 
-<% @users.each_with_index do |u, i| %>
+<% @group.users.each_with_index do |u, i| %>
     elements[<%= i %>] = $('item_cost_<%= u.id %>')
 <% end %>
 
