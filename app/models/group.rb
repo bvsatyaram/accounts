@@ -13,4 +13,5 @@ class Group < ActiveRecord::Base
   def get_group_user(user)
     self.group_users.find_by_user_id(user.id)
   end
+
 end
