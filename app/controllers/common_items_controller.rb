@@ -37,7 +37,15 @@ class CommonItemsController < ApplicationController
   end
 
   def index
-    @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "id desc")
+    if @group.admin == current_user && !params[:small_view]
+      @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "id desc")
+    else
+      @common_items = CommonItem.paginate_by_sql(["SELECT DISTINCT common_items.* FROM common_items,group_users,items
+   WHERE ((items.common_item_id = common_items.id AND group_users.user_id = items.user_id AND group_users.id = ?) OR
+    (common_items.group_user_id = ? AND  common_items.group_user_id = group_users.id)) AND
+    group_users.group_id =? ORDER BY id DESC", @group_user.id, @group_user.id, @group.id], {:page => params[:page]||1, :per_page => params[:per_page]||50})
+    end
+    
     @total_cost = @common_items? @common_items.collect(&:cost).sum : 0
     @new_common_item = @group.common_items.new(:group_user_id => @group_user.id)
   end
