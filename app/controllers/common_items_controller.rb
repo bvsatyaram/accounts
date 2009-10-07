@@ -1,5 +1,5 @@
 class CommonItemsController < ApplicationController
-  before_filter :find_group
+  before_filter :find_group_and_group_user
   allow :exec => :check_auth
   
   def new
@@ -43,7 +43,7 @@ class CommonItemsController < ApplicationController
   end
 
   def destroy
-    @common_item = CommonItem.find(params[:id])
+    @common_item = @group_user.common_items.find(params[:id])
     if @common_item.destroy
       flash[:notice] = "Successfully deleted"
     end
@@ -61,7 +61,7 @@ class CommonItemsController < ApplicationController
     redirect_to :action => :index
   end
 
-  def find_group
+  def find_group_and_group_user
     @group = current_user.groups.find(params[:group_id])
     @group_user = @group.get_group_user(current_user)
   end

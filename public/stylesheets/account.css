@@ -188,6 +188,10 @@ a.button, input.button {
   font-size: small;
 }
 
+#overview_groups ul{
+  padding: 0 0 10px 10px;
+}
+
 /************** Styles for order form ***************/
 
 fieldset {
