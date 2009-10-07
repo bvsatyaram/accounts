@@ -37,7 +37,7 @@ class CommonItemsController < ApplicationController
   end
 
   def index
-    if @group.admin == current_user && !params[:small_view]
+    if @group.admin == current_user && params[:full_view]
       @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "id desc")
     else
       @common_items = CommonItem.paginate_by_sql(["SELECT DISTINCT common_items.* FROM common_items,group_users,items
