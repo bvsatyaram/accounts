@@ -1,6 +1,6 @@
 <fieldset class="group_details">
   <legend>Group Details</legend>
-  <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => (current_user == @group.admin)} %>
+  <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => true} %>
   <% unless @group.description.blank? %>
     <div>
       <span>Descritpion</span> <%= @group.description %>

@@ -62,9 +62,18 @@
   width: 100%;
 }
 
+#group_show .group_details table th.label_names span{
+    width: auto;
+}
+
 #group_show .group_details table#group_details_table{
   width: 300px;
   float: left;
+}
+
+ #group_show .group_details table span.payer{
+  color: #AA0000;
+
 }
 
 /*************************** Common Items *************************************/

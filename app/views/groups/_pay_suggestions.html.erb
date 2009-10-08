@@ -4,7 +4,11 @@
     <% receiver_group_users = GroupUser.find(pay_structure.receivers.keys) %>
     <table border="1px solid #AAA" id="full_pay_details">
       <tr>
-        <th><dim>Payers / Receivers </dim></th>
+        <th class="label_names">
+          <span class="payer">Payers</span>
+          <span><dim>/</dim></span>
+          <span>Receivers</span>
+        </th>
         <% receiver_group_users.each do |group_user| %>
           <th> <span class="title"> <%= group_user.name %> </span> </th>
         <% end %>
@@ -12,7 +16,7 @@
       <% pay_structure.payers.keys.each do |group_user| %>
         <% payer = pay_structure.payers[group_user] %>
         <tr>
-          <td> <%= payer.group_user.name %> </td>
+          <td> <span class="payer"><%= payer.group_user.name %> </span></td>
           <% receiver_group_users.each do |group_user| %>
             <td> <%= payer.transaction_partners[group_user] || "-" %> </td>
           <% end %>
