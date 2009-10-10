@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   
   def new
-    @group = current_user.groups.new()
+    @group = Group.new()
   end
 
   def create
