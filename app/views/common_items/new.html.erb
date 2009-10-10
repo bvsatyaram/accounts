@@ -4,42 +4,37 @@
 		<legend>Enter Item Details</legend>
 		<% form_for([:group, @common_item]) do |f| %>
 			<%= f.error_messages %>
-			<p>
+			<div class="label_item">
 				<%= f.label :name %>
 				<%= f.text_field :name, :size => 40 %>
-			</p>
-			<p>
+			</div>
+			<div class="label_item">
 				<%= f.label :cost %>
 				<%= f.text_field :cost, :size => 5 %>
-			</p>
-			<p>
+			</div>
+      <div class="label_item">
+        <label for="common_item_transaction_date">Transaction date:</label>
+        <%= calendar_input_tag(:common_item, :transaction_date, :form => f) %>
+      </div>
+			<div class="label_item">
 				<label for="common_item_users">Users:</label>
+        <div class="group_users_list">
 				<% @users.each_with_index do |user, i| %>
-					<input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= user.id %>" <%= "CHECKED" if user == current_user %>><%= user.name.humanize %></input>
+					<span class="group_user">
+            <input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= user.id %>" <%= "CHECKED" if user == current_user %>/>
+            <%= user.name.humanize %>
+          </span>
 				<% end %>
+        </div>
 				<br>
-			    <a style="margin-left:90px;" id="select" href="#" onclick="selectAll(true);">Check All</a>
-				<a id="unselect" style="margin-left:90px; display:none" href="#" onclick="selectAll(false);">Uncheck All</a>
-			</p>
-			<p>
+			  <a id="select" href="#" onclick="selectAll(true);">Check All</a>
+				<a id="unselect" style="display:none" href="#" onclick="selectAll(false);">Uncheck All</a>
+			</div>
+      <div class="label_item">
 				<%= hidden_field_tag :add_another, 0 %>
 				<input type="button" class="submit" onclick="$('add_another').value = 1;$('new_common_item').submit()" value="Save and add another">
 				<%= f.submit "Create" %>
-			</p>
+			</div>
 		<% end %>
 	</fieldset>
 </div>
-
-<script>
-function selectAll(state){
-    var theForm = document.getElementById('new_common_item');
-	var z = 0;
-    for (z = 0; z < theForm.length; z++) {
-        if (theForm[z].type == 'checkbox') {
-			theForm[z].checked = state;
-		}
-    }
-    $('select').toggle();
-    $('unselect').toggle();
-}
-</script>

@@ -3,7 +3,7 @@ class CommonItemsController < ApplicationController
   allow :exec => :check_auth
   
   def new
-    @common_item = @group_user.common_items.new
+    @common_item = @group_user.common_items.new(:transaction_date => Date.today.strftime("%B %d,%Y"))
     @users = @group.users
   end
 
@@ -22,7 +22,7 @@ class CommonItemsController < ApplicationController
     
     if @common_item.save
       Item.create_items(params[:user_ids], @common_item)
-      flash[:notice]= "Emi konnava kaani andariki Bokka pettav"
+      flash[:notice]= "Item has been successfully added"
       if params[:add_another] == "0"
         redirect_to :action => :index
       else
@@ -30,7 +30,6 @@ class CommonItemsController < ApplicationController
         render :action =>  :new and return
       end
     else
-      flash[:notice]= @common_item.errors.full_messages.to_sentence
       render :action =>  :new and return
     end
 
@@ -49,7 +48,7 @@ class CommonItemsController < ApplicationController
     end
     
     @total_cost = @common_items ? @group.common_items.collect(&:cost).sum : 0
-    @new_common_item = @group.common_items.new(:group_user_id => @group_user.id)
+    @new_common_item = @group.common_items.new(:group_user_id => @group_user.id, :cost => 0, :transaction_date => Date.today.strftime("%B %d,%Y"))
   end
 
   def destroy
