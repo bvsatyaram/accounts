@@ -73,7 +73,12 @@
 
  #group_show .group_details table span.payer{
   color: #AA0000;
+}
 
+#group_show .pagination_details{
+  float: left;
+  width: 70%;
+  text-align: center;
 }
 
 /*************************** Common Items *************************************/
@@ -95,12 +100,12 @@
 #common_items_table tr.header{
   font-weight:bold;
 }
-
 /*************************** New Common Item **********************************/
 #new_common_item div.label_item{
   float: left;
   clear: left;
   margin: 5px 0;
+  width: 100%;
 }
 
 #new_common_item label {
@@ -117,7 +122,8 @@
 
 #new_common_item .label_item a#select,
 #new_common_item .label_item a#unselect{
-  margin-left: 110px;
+  float: left;
+  clear: left;
 }
 
 #new_common_item div.label_item div.group_users_list{

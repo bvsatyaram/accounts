@@ -5,16 +5,16 @@
   <%= render :partial => "groups/group_details" %>
   <div style="overflow-x: scroll">
     <span style="float:left;"><%= page_entries_info(@common_items,  :entry_name => 'items') %></span>
-    <span style="float:right;"><%= will_paginate @common_items %></span>
+    <span class="pagination_details"><%= will_paginate @common_items %></span>
     <br>
     <table id="common_items_table" border="1" rules="all">
       <tr class="header">
-        <td>Item Name</td>
-        <td>Cost (paid by)</td>
+        <th>Item Name</th>
+        <th>Cost (paid by)</th>
         <% @group.users.each do |user| %>
-          <td><%= user.display_name %>'s share</td>
+          <th><%= user.display_name %></th>
         <% end %>
-        <td>Date</td>
+        <th>Date</th>
       </tr>
       <tr>
         <% form_for([:group, @new_common_item]) do |f| %>
@@ -27,7 +27,7 @@
           <% end %>
           <td>
             <%= calendar_input_tag(:common_item, :transaction_date, :form => f) %>
-            <%= f.submit "Create", :onclick => "return CommonItem.update_final_cost()" %>
+            <%= f.submit "Create", :onclick => "return CommonItem.update_final_cost()", :class => "button" %>
           </td>
         <% end %>
       </tr>

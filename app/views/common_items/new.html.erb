@@ -19,16 +19,16 @@
 			<div class="label_item">
 				<label for="common_item_users">Users:</label>
         <div class="group_users_list">
-				<% @users.each_with_index do |user, i| %>
-					<span class="group_user">
-            <input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= user.id %>" <%= "CHECKED" if user == current_user %>/>
-            <%= user.name.humanize %>
-          </span>
-				<% end %>
+          <% @users.each_with_index do |user, i| %>
+            <span class="group_user">
+              <input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= user.id %>" <%= "CHECKED" if user == current_user %>/>
+              <%= user.name.humanize %>
+            </span>
+          <% end %>
+          <br>
+          <a id="select" href="#" onclick="selectAll(true);">Check All</a>
+          <a id="unselect" style="display:none" href="#" onclick="selectAll(false);">Uncheck All</a>
         </div>
-				<br>
-			  <a id="select" href="#" onclick="selectAll(true);">Check All</a>
-				<a id="unselect" style="display:none" href="#" onclick="selectAll(false);">Uncheck All</a>
 			</div>
       <div class="label_item">
 				<%= hidden_field_tag :add_another, 0 %>
