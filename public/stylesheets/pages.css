@@ -7,7 +7,6 @@
 
 /************** Pay Structure ****************************************/
 #pay_structure {
-  margin-top: 20px;
   background: #FFFF99 none repeat scroll 0 0;
   color: #994433;
   width: 98%;
@@ -48,48 +47,54 @@
   margin-bottom: 10px;
 }
 
-#group_show .group_details div{
-  width: 100%;
-  float: left;
-  margin: 0 0 5px 0;
-}
-
-#group_show .group_details span{
-  float: left;
-  color: #337733;
-  font-weight: bold;
-  margin: 5px 5px 0px 0px;
-  width: 100%;
-}
-
 #group_show .group_details table th.label_names span{
     width: auto;
 }
 
-#group_show .group_details table#group_details_table{
-  width: 300px;
-  float: left;
-}
-
- #group_show .group_details table span.payer{
+#group_show .group_details table span.payer {
   color: #AA0000;
 }
 
 #group_show .pagination_details{
-  float: left;
+  float: right;
   width: 70%;
-  text-align: center;
+  text-align: right;
+}
+
+#group_show input[type="submit"] {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+table.group_status {
+  width: 40%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+
+table.group_status th {
+  background: #ddd;
+  padding: 3px 5px;
+}
+
+table.group_status td {
+  padding: 3px 8px;
 }
 
 /*************************** Common Items *************************************/
 #common_items_table{
   width: 97%;
-  font-size: 1em;
   border-color: #aaa;
 }
 
+#common_items_table th {
+  background: #ddd;
+  padding: 3px 5px;
+}
+
 #common_items_table td{
-  padding: 4px;
+  padding: 0 4px;
 }
 
 #common_items_table tr.full_stats{
@@ -100,7 +105,31 @@
 #common_items_table tr.header{
   font-weight:bold;
 }
+
+div.group_details {
+   background: #EFEEFE;
+  padding: 10px;
+  width: 100%;
+}
+
+div.admin_actions {
+  background: #eaeaea;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+div.admin_actions span{
+  float: left;
+}
+
 /*************************** New Common Item **********************************/
+#new_common_items legend{
+  background: #115566 none repeat scroll 0 0;
+  color: white;
+  padding: 2px 5px;
+}
+
 #new_common_item div.label_item{
   float: left;
   clear: left;
@@ -153,22 +182,15 @@
   margin: 10px;
 }
 
-/*************************** Group Show ***************************************/
-#group_show input[type="text"]{
-    border-color: green;
-  }
+/*****************************Groups Index ************************************/
+#groups .group .group_header {
+  width: 100%;
+  padding: 5px 10px;
+  background: #eee;
+  margin-bottom: 10px;
+}
 
- #group_show input[type="submit"]{
-    background-image:url(/images/icon-add.gif);
-    background-repeat: no-repeat;
-    background-color: #336633;
-    padding: 0px 1px 0px 22px;
-    border-color: #336633;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    -moz-border-radius-topleft: 10px;
-    -moz-border-radius-topright: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    -moz-border-radius-bottomright: 10px;
-  }
+#groups .group_header h2 {
+  float: left;
+  margin: 5px;
+}

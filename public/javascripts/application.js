@@ -1,5 +1,12 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+function myGroups(){
+  if($("my_groups_link")){
+    $("my_groups_link").observe('mouseover', function() {$("my_groups").show(); });
+    $("my_groups_link").observe('mouseout', function() {$("my_groups").hide(); });
+  }
+}
+
 var CommonItem = {
   elements: [],
 

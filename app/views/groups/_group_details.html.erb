@@ -1,24 +1,25 @@
-<fieldset class="group_details">
-  <legend>Group Details</legend>
-  <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => true} %>
-  <% unless @group.description.blank? %>
-    <div>
-      <span>Descritpion</span> <%= @group.description %>
-    </div>
-  <% end %>
-  <% if current_user == @group.admin %>
-    <div>
-      <span>Invite Url</span>
-      <%= link_to new_user_url(:group_code => @group.code), new_user_url(:group_code => @group.code) %>
-    </div>
-    <%= link_to("Delete this group", group_path(@group), :method => :delete,
-      :confirm => "Are you sure you want to delete this group?", :class => 'button', :style => 'float:right') %>
-  <% end %>
-  <table id="group_details_table">
-    <tr>
-      <th> Group members </th>
-      <th> Credit </th>
-    </tr>
+<% if current_user == @group.admin %>
+<div class='clearfix admin_actions'>
+  <span>
+    <b>Invite Url:</b>
+    <%= link_to new_user_url(:group_code => @group.code), new_user_url(:group_code => @group.code) %>
+  </span>
+  <%= link_to("Delete this group", group_path(@group), :method => :delete, :confirm => "Are you sure you want to delete this group?", :class => 'button righted') %>
+</div>
+<% end %>
+
+<div class="group_details clearfix">
+   <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => true} %>
+   <% unless @group.description.blank? %>
+     <div>
+      <strong>Group Info:</strong> <%= @group.description %>
+     </div>
+   <% end %>
+  <table id="group_details_table" class='group_status'>
+     <tr>
+       <th> Group members </th>
+       <th> Credit </th>
+     </tr>
     <% @group.group_users.each do |group_user| %>
       <tr>
         <td> <%= link_to group_user.user.display_name, user_path(group_user.user) %> </td>
@@ -26,4 +27,4 @@
       </tr>
     <% end %>
   </table>
-</fieldset>
+</div>

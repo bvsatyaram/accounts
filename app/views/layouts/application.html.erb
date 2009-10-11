@@ -7,33 +7,43 @@
     <%= calendar_include_tag %>
   </head>
   <body>
-    <div id="swip_header" class="clearfix">
-      <%= mail_to "mrudhu@gmail.com", "SWiP", :id => "swip"  %>
-      <div id="header_actions">
+    <div id="banner" class="clearfix">
+      <h1 class="title">
+        My Money Transactions <small class='swip_label'>by SWiP</small>
+      </h1>
+      <div class='links clearfix'>
+        <small>
+          <% if current_user %>
+            <%= link_to current_user.name, user_path(current_user) %>
+            <%= link_to "My Items", items_path() %>
+            <%= link_to 'Logout', logout_path, :class => "last" %>
+          <% else %>
+            <%= link_to 'Login', login_path, :class => "last" %>
+          <% end %>
+        </small>
         <% if current_user %>
-          <%= link_to current_user.name, user_path(current_user) %>
-          <%= link_to 'My groups', groups_path %>
-          <%= link_to 'Logout', logout_path, :class => "last" %>
-        <% else %>
-          <%= link_to 'Login', login_path, :class => "last" %>
+          <div class='groups_list clearfix' id='my_groups_link'>
+            <%= link_to "My Groups &#9660;", groups_path, :class => "my_groups_link"%>
+            <div id='my_groups' style='display:none'>
+              <ul>
+                <% current_user.groups.each do |group| %>
+                  <li><%= link_to truncate(group.name, :length => 15), group_path(group) %> : Rs.<%= group.get_group_user(current_user).balance %> </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <%= javascript_tag "myGroups();" %>
         <% end %>
       </div>
     </div>
-    <div id="banner" class="clearfix">
-      <div class="title">
-        <%= @page_title || "My Money Transactions" %>
-      </div>
-    </div>
+
     <div id="columns" class="clearfix">
-      <div id="side" style="float:left;">
-        <%= render :partial => "common/overview" if current_user %>
-      </div>
       <div id="main" class="clearfix">
         <div id="title_box">
           <div id="title_actions">
             <%= @page_action %>
           </div>
-          <div id="title_name">
+          <div id="title_name" class="clearfix">
             <h1><%= @title || "My Money" %></h1>
           </div>
         </div>
