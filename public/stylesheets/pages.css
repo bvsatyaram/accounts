@@ -5,6 +5,38 @@
     Description: Specific to individual pages
 */
 
+#login {
+  width: 425px;
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  -moz-border-radius: 5px;
+  padding: 10px;
+  padding-top: 25px;
+}
+
+#login #user_session_submit {
+  margin-right: 10px;
+}
+
+#login span {
+  margin-left: 45px;
+  margin-bottom: 10px;
+}
+
+#login form {
+  margin-top: 20px;
+}
+
+#login form div.field {
+  margin: 10px 0;
+  clear: both;
+}
+
+#login input[type=text],
+#login input[type=password] {
+  float: none;
+}
+
 /************** Pay Structure ****************************************/
 #pay_structure {
   background: #FFFF99 none repeat scroll 0 0;

@@ -29,7 +29,7 @@ body{
   margin: 0 auto;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, label {
   color: #1B314F;
 }
 
@@ -61,7 +61,6 @@ label{
   width: 135px;
   text-align: right;
   margin-right: 10px;
-  color: #337733;
   font-weight: bold;
 }
 
@@ -214,7 +213,7 @@ input.button:hover,
 #main div#title_box #title_name h1{
   font-size:1.8em;
   font-weight: bold;
-  margin:0;
+  margin:5px 0;
   padding:0;
 }
 
@@ -243,11 +242,11 @@ input.button:hover,
 
 /* The error box */
 
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
+.fieldWithErrors input {
+  border: 3px solid red;
   display: table;
   float: left;
+  padding: 3px;
 }
 
 #errorExplanation {
@@ -278,6 +277,7 @@ input.button:hover,
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+  list-style-position: inside;
 }
 
 #notice {
@@ -307,4 +307,8 @@ table {
 
 .righted {
   float: right !important;
+}
+
+.lefted {
+  float: left !important;
 }
