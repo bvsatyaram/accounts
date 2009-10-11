@@ -39,9 +39,16 @@
 
 /************** Pay Structure ****************************************/
 #pay_structure {
-  background: #FFFF99 none repeat scroll 0 0;
-  color: #994433;
-  width: 98%;
+  background: #ffff99 none repeat scroll 0 0;
+  padding: 10px;
+  color: #121212;
+  width: 38%;
+  -moz-border-radius: 5px;
+  border: 1px solid #505050;
+}
+
+#pay_structure h3.small_view {
+  margin: 0;
 }
 
 #pay_structure .title{
@@ -61,11 +68,17 @@
 }
 
 #pay_structure div.transactions{
-  float:left;
+  margin-top: 10px;
 }
 
 #full_pay_details{
   background-color: #FFFF99;
+  min-width: 40%;
+}
+
+#full_pay_details th,
+#full_pay_details td {
+  padding: 5px 10px;
 }
 
 #items_list	{
@@ -93,9 +106,17 @@
   text-align: right;
 }
 
+#group_show input#common_item_transaction_date {
+  float: left;
+  width: 100px;
+  margin-right: 5px;
+}
+
 #group_show input[type="submit"] {
   font-size: 1em;
   font-weight: bold;
+  float: left;
+  margin-left: 5px;
 }
 
 table.group_status {
@@ -125,8 +146,12 @@ table.group_status td {
   padding: 3px 5px;
 }
 
+#common_items_table th.date {
+  width: 18%;
+}
+
 #common_items_table td{
-  padding: 0 4px;
+  padding: 4px;
 }
 
 #common_items_table tr.full_stats{
