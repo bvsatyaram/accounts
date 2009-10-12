@@ -19,7 +19,7 @@
               <th> Credit </th>
             </tr>
             <% group.group_users.each do |group_user| %>
-              <tr>
+              <tr style= "background-color: <%= '#FFFF99' if group_user.user == current_user %>" >
                 <td> <%= group_user.user.name %> </td>
                 <td> Rs. <%= group_user.balance %> </td>
               </tr>
