@@ -83,6 +83,7 @@ input.button,
   margin: 0;
   padding: 3px 7px;
   -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
   font-family: arial, sans-serif;
 }
 
@@ -111,6 +112,7 @@ input.button:hover,
   font-size: 1.7em;
   background:#121212 none repeat scroll 0 0;
   -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
   padding: 10px 30px;
   opacity: 0.7;
 }
@@ -126,6 +128,7 @@ input.button:hover,
   color: white;
   opacity: 0.8;
   margin: 10px 30px;
+  width: 300px;
 }
 
 #banner .links small {
@@ -143,6 +146,7 @@ input.button:hover,
   background: #121212 none repeat scroll 0 0;
   padding: 10px;
   -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 #banner .links .groups_list a.my_groups_link {
@@ -153,10 +157,9 @@ input.button:hover,
   position: absolute;
   top: 30px;
   left: 0;
-  width: 220px;
+  width: 230px;
   background: #121212 none repeat scroll 0 0;
   color: white;
-  -moz-border-radius: 5px;
   font-weight: normal;
 }
 
@@ -164,8 +167,7 @@ input.button:hover,
   list-style-type: none;
 }
 
-#banner .links .groups_list #my_groups ul li:hover{
-  background: #115566 none repeat scroll 0 0;
+#banner .links .groups_list #my_groups ul li:hover {
 }
 
 #banner .links .groups_list #my_groups ul li{
@@ -192,6 +194,8 @@ input.button:hover,
   color: #121212;
   -moz-border-radius-bottomleft: 15px;
   -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  -webkit-border-bottom-right-radius: 15px;
 }
 
 #main #title_box {
@@ -287,6 +291,7 @@ input.button:hover,
   font: bold large sans-serif;
   color: #1B314F;
   -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
 
 #error {
