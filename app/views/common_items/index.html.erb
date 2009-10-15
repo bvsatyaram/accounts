@@ -14,7 +14,7 @@
         <% @group.users.each do |user| %>
           <th><%= user.display_name %></th>
         <% end %>
-        <th class='date'>Date</th>
+        <th class='date'>Transaction Date</th>
       </tr>
       <tr>
         <% form_for([:group, @new_common_item]) do |f| %>

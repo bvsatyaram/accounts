@@ -2,9 +2,9 @@ class CommonItem < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   belongs_to :group_user
 
-  validates_presence_of :cost, :name, :group_user
+  validates_presence_of :cost, :name, :group_user, :transaction_date
   validates_numericality_of :cost
-  
+
   after_create :decrement_user_balance
   after_destroy :increment_user_balance
 

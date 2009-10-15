@@ -43,7 +43,7 @@ class CommonItemsController < ApplicationController
       @common_items = CommonItem.paginate_by_sql(
         ["SELECT DISTINCT common_items.* FROM common_items,group_users,items WHERE items.common_item_id = common_items.id AND items.user_id = ? AND group_users.id = common_items.group_user_id AND group_users.group_id = ?
             UNION
-          SELECT DISTINCT common_items.* FROM common_items WHERE common_items.group_user_id = ? ORDER BY id DESC",
+          SELECT DISTINCT common_items.* FROM common_items WHERE common_items.group_user_id = ? ORDER BY transaction_date DESC",
           @group_user.user_id, @group.id, @group_user.id], {:page => params[:page]||1, :per_page => params[:per_page]||50})
     end
     
@@ -66,6 +66,8 @@ class CommonItemsController < ApplicationController
       params[:item_cost].keys.each do |key|
         @common_item.items.create(:user_id => key, :default_amount => params[:item_cost][key], :name => @common_item.name) unless params[:item_cost][key].blank? || params[:item_cost][key] == "0"
       end
+    else
+      flash[:error] = "Error saving! Please enter a valid transaction date"
     end
     redirect_to :action => :index
   end
