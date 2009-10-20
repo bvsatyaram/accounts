@@ -197,11 +197,16 @@ div.admin_actions span{
 }
 
 #new_common_item label {
-  width: 100px;
+  width: 150px;
   float: left;
   text-align: right;
   margin-right: 0.5em;
   display: block;
+}
+
+#new_common_item div.label_item input,
+#new_common_item div.label_item select{
+  margin-bottom: 10px;
 }
 
 #new_common_item .submit {
@@ -226,9 +231,15 @@ div.admin_actions span{
   margin-right: 10px;
 }
 
+#new_common_item div.label_item span.user_with_box{
+  float: left;
+  margin-right: 20px;
+}
+
 #new_common_item div.label_item span.group_user input{
   position: relative;
   top: 3px;
+  margin-right: 0px;
 }
 /*************************** User Show ****************************************/
 #user_show ul li.groups_list{

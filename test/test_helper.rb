@@ -35,4 +35,59 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # Asserts that an error is raised on the given field and with the given
+  # message (optional) by the given block
+  def assert_raise_error_on_field(exception_class,field,expected_message = nil,options = {},&block)
+    error_raised = nil
+    error_info = assert_raise exception_class, "Did not get exception for field #{field}" do
+      # Execute the block in a rescue block so that we can re-raise the exception
+      # if required.
+      begin
+        yield
+      rescue => error_raised
+        raise error_raised
+      end
+    end
+
+    # Extract the field name and error message from the return value
+    # Eg., Process "Validation failed: Coach can't be blank, Area is not given"
+    # to get ['coach', 'can't be blank'], ['area', 'is not given'] pairs.
+    #
+    error_info.message.match(/.*: (.*)/)
+
+    # Panic if no field errors.
+    assert_not_nil $1
+
+    field_errors = $1.split(", ")
+
+    match_found = false
+    wrong_message = false
+
+    field_errors.each do |error_entry|
+      # Skip to next error if not matched.
+      next unless error_entry.match(/(#{field.to_s.humanize}) (.*)/)
+
+      if field.to_s.humanize.downcase == $1.downcase
+        # First condition matched
+        match_found = true
+
+        # See if second condition also matches, if given
+        if !expected_message.blank? && expected_message != $2
+          match_found = false
+          wrong_message = $2
+        end
+      end
+    end
+
+    if !match_found
+      if wrong_message
+        assert false, "Exception message on field #{field} did not match: " +
+          "Expected '#{expected_message}', Got '#{wrong_message}'"
+      else
+        assert false, "Expected to raise exception on field #{field}, but nothing raised"
+      end
+    end
+
+    raise error_raised if options[:cascade]
+  end
 end

@@ -3,6 +3,8 @@ class GroupUser < ActiveRecord::Base
   belongs_to :group
 
   has_many :common_items
+  named_scope :payers, :conditions => ["balance > 0"]
+  named_scope :receivers, :conditions => ["balance < 0"]
   
   validates_uniqueness_of :user_id, :scope => [:group_id]
 

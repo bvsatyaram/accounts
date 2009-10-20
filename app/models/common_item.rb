@@ -1,9 +1,21 @@
 class CommonItem < ActiveRecord::Base
+  class Type
+    SHARED_EQUALLY = 0
+    SHARED_UNEQUALLY = 1
+    PAYMENT = 2
+    RECORD_PAYMENT = 3
+
+    def self.all
+      [SHARED_UNEQUALLY, SHARED_EQUALLY, PAYMENT, RECORD_PAYMENT]
+    end
+  end
+
   has_many :items, :dependent => :destroy
   belongs_to :group_user
 
-  validates_presence_of :cost, :name, :group_user, :transaction_date
+  validates_presence_of :cost, :name, :group_user, :transaction_date, :items
   validates_numericality_of :cost
+  validates_inclusion_of :transaction_type, :in => Type.all
 
   after_create :decrement_user_balance
   after_destroy :increment_user_balance
