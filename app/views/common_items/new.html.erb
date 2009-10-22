@@ -1,23 +1,23 @@
 <% @title = @group.name %>
 <div id="new_common_items">
-	<fieldset>
-		<legend>Enter Item Details</legend>
-		<% form_for([:group, @common_item]) do |f| %>
-			<%= f.error_messages %>
-			<div class="label_item">
-				<%= f.label :name %>
-				<%= f.text_field :name, :size => 40 %>
-			</div>
-			<div class="label_item">
-				<%= f.label :cost %>
-				<%= f.text_field :cost, :size => 5 %>
-			</div>
+  <fieldset>
+    <legend>Enter Item Details</legend>
+    <% form_for([:group, @common_item]) do |f| %>
+      <%= f.error_messages %>
+      <div class="label_item">
+        <%= f.label :name %>
+        <%= f.text_field :name, :size => 40 %>
+      </div>
+      <div class="label_item">
+        <%= f.label :cost %>
+        <%= f.text_field :cost, :size => 5 %>
+      </div>
       <div class="label_item">
         <label for="common_item_transaction_date">Transaction date:</label>
         <%= calendar_input_tag(:common_item, :transaction_date, :form => f) %>
       </div>
-			<div class="label_item">
-				<label for="common_item_users">Users:</label>
+      <div class="label_item">
+        <label for="common_item_users">Users:</label>
         <div class="group_users_list">
           <% @users.each_with_index do |user, i| %>
             <span class="group_user">
@@ -29,12 +29,12 @@
           <a id="select" href="#" onclick="selectAll(true);">Check All</a>
           <a id="unselect" style="display:none" href="#" onclick="selectAll(false);">Uncheck All</a>
         </div>
-			</div>
+      </div>
       <div class="label_item">
-				<%= hidden_field_tag :add_another, 0 %>
-				<input type="button" class="submit" onclick="$('add_another').value = 1;$('new_common_item').submit()" value="Save and add another">
-				<%= f.submit "Create" %>
-			</div>
-		<% end %>
-	</fieldset>
+        <%= hidden_field_tag :add_another, 0 %>
+        <input type="button" class="submit" onclick="$('add_another').value = 1;$('new_common_item').submit()" value="Save and add another">
+        <%= f.submit "Create" %> or <%= link_to "Cancel", group_path(@group) %>
+      </div>
+    <% end %>
+  </fieldset>
 </div>
