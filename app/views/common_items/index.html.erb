@@ -16,21 +16,6 @@
         <% end %>
         <th class='date'>Transaction Date</th>
       </tr>
-      <tr>
-        <% form_for([:group, @new_common_item]) do |f| %>
-          <%= hidden_field_tag :index, true %>
-          <td><%= f.text_field :name, :size => 20 %></td>
-          <td><%= f.text_field :cost, :size => 5, :disabled => true, :style => "border-color: white;" %></td>
-          <% @group.users.each do |user| %>
-            <td><%= text_field :item_cost, user.id, :size => 5, :onkeyup => "CommonItem.update_cost()", :onblur => "CommonItem.update_cost()",
-                               :onclick => "CommonItem.update_cost()", :onkeydown => "CommonItem.update_cost()" %></td>
-          <% end %>
-          <td>
-            <%= calendar_input_tag(:common_item, :transaction_date, :form => f) %>
-            <%= f.submit "Create", :onclick => "return CommonItem.update_final_cost()", :class => "button" %>
-          </td>
-        <% end %>
-      </tr>
       <% @common_items.each do |common_item| %>
         <tr>
           <td><%= common_item.name %>&nbsp;&nbsp;<small><%= show_delete_link(common_item)%></small></td>
@@ -55,9 +40,3 @@
     <span style="float:right;"><%= will_paginate @common_items %></span>
   </div>
 </div>
-
-<script>
-  <% @group.users.each_with_index do |u, i| %>
-    CommonItem.elements[<%= i %>] = $('item_cost_<%= u.id %>')
-  <% end %>
-</script>

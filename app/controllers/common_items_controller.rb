@@ -10,29 +10,30 @@ class CommonItemsController < ApplicationController
   def create
     @common_item = @group_user.common_items.new(params[:common_item])
     @users = @group.users
-
-    if params[:index]
-      handle_index_page_creation and return
-    end
-
-    unless params[:user_ids]
-      flash[:error]="Select atleast one user"
-      render :action =>  :new and return
-    end
     
-    if @common_item.save
-      Item.create_items(params[:user_ids], @common_item)
-      flash[:notice]= "Item has been successfully added"
-      if params[:add_another] == "0"
-        redirect_to :action => :index
-      else
-        @common_item = CommonItem.new()
-        render :action =>  :new and return
+    if @common_item.transaction_type != CommonItem::Type::SHARED_EQUALLY
+      @group.users.find_all_by_id(params[:item_cost].keys).each do |user|
+        key = user.id.to_s
+        unless params[:item_cost][key].blank? || params[:item_cost][key] == "0"
+          @common_item.items.build(:user => user, :default_amount => params[:item_cost][key], :name => @common_item.name, :transaction_date => @common_item.transaction_date)
+        end
       end
     else
-      render :action =>  :new and return
+      users = @group.users.find_all_by_id(params[:user_ids])
+      default_amount = (@common_item.cost.to_f/users.size.to_f).round
+      users.each do |user|
+        @common_item.items.build(:user => user, :default_amount => default_amount, :name => @common_item.name, :transaction_date => @common_item.transaction_date)
+      end
     end
 
+    if @common_item.save
+      flash[:notice]= "Item has been successfully added"
+      redirect_to :action => :index
+    else
+      render :action =>  :new
+    end
+  
+      
   end
 
   def index
@@ -61,16 +62,7 @@ class CommonItemsController < ApplicationController
 
   private
 
-  def handle_index_page_creation
-    if @common_item.save
-      params[:item_cost].keys.each do |key|
-        @common_item.items.create(:user_id => key, :default_amount => params[:item_cost][key], :name => @common_item.name) unless params[:item_cost][key].blank? || params[:item_cost][key] == "0"
-      end
-    else
-      flash[:error] = "Error saving! Please enter a valid transaction date"
-    end
-    redirect_to :action => :index
-  end
+  
 
   def find_group_and_group_user
     @group = current_user.groups.find(params[:group_id])
