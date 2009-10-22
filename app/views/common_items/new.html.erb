@@ -23,7 +23,7 @@
       <%= render :partial => "common_items/transaction_types" %>
       <div class="label_item">
         <label style="visibility:hidden">.</label>
-        <%= f.submit "Create", :class => "button", :onclick => "return CommonItem.beforeSubmit()" %> or <%= link_to "Cancel", grroup_path(@group) %>
+        <%= f.submit "Create", :class => "button", :onclick => "return CommonItem.beforeSubmit()" %> or <%= link_to "Cancel", group_path(@group) %>
       </div>
     <% end %>
   </fieldset>
