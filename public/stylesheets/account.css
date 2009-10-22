@@ -286,7 +286,7 @@ input.button:hover,
 
 #notice {
   padding: 0.5em 1em;
-  margin-bottom: 2em;
+  margin-bottom: 10px;
   background-color: #FFFFBB;
   font: bold large sans-serif;
   color: #1B314F;

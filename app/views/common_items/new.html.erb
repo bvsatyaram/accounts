@@ -20,7 +20,11 @@
         <%= f.label :cost %>
         <%= f.text_field :cost, :size => 5 %>
       </div>
-      <%= render :partial => "common_items/transaction_types" %>
+      <div class="label_item">
+        <label for="common_item_users">Users:</label>
+        <%= render :partial => "common_items/transaction_types" %>
+      </div>
+      
       <div class="label_item">
         <label style="visibility:hidden">.</label>
 				<%= f.submit "Create", :class => "button", :onclick => "return CommonItem.beforeSubmit()" %>
