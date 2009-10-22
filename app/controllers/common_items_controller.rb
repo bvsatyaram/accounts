@@ -39,12 +39,12 @@ class CommonItemsController < ApplicationController
   def index
     @is_full_view = params[:full_view]
     if @group.admin == current_user && @is_full_view
-      @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "id desc")
+      @common_items = @group.common_items.paginate(:page => params[:page]||1, :per_page => params[:per_page]||50, :order => "transaction_date desc, id DESC")
     else
       @common_items = CommonItem.paginate_by_sql(
         ["SELECT DISTINCT common_items.* FROM common_items,group_users,items WHERE items.common_item_id = common_items.id AND items.user_id = ? AND group_users.id = common_items.group_user_id AND group_users.group_id = ?
             UNION
-          SELECT DISTINCT common_items.* FROM common_items WHERE common_items.group_user_id = ? ORDER BY transaction_date DESC",
+          SELECT DISTINCT common_items.* FROM common_items WHERE common_items.group_user_id = ? ORDER BY transaction_date DESC, id DESC",
           @group_user.user_id, @group.id, @group_user.id], {:page => params[:page]||1, :per_page => params[:per_page]||50})
     end
     
