@@ -3,8 +3,11 @@ class CommonItemsController < ApplicationController
   allow :exec => :check_auth
   
   def new
-    @common_item = @group_user.common_items.new(:transaction_date => Date.today.strftime("%B %d,%Y"))
-    @users = @group.users
+    unless request.xhr?
+      @common_item = @group_user.common_items.new(:transaction_date => Date.today.strftime("%B %d,%Y"))
+    else
+      @type = params[:type]
+    end
   end
 
   def create
@@ -32,8 +35,6 @@ class CommonItemsController < ApplicationController
     else
       render :action =>  :new
     end
-  
-      
   end
 
   def index

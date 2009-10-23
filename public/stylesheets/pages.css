@@ -165,6 +165,10 @@ table.group_status td {
   font-weight:bold;
 }
 
+#common_items_table tr.payment{
+  background-color: #FFFFBB;
+}
+
 div.group_details {
   background: #EFEEFE;
   width: 100%;
@@ -207,6 +211,13 @@ div.admin_actions span{
 #new_common_item div.label_item input,
 #new_common_item div.label_item select{
   margin-bottom: 10px;
+  float:left;
+}
+
+#new_common_item .label_item img{
+  float: left;
+  height:20px;
+  margin-left:10px;
 }
 
 #new_common_item .submit {
@@ -240,6 +251,7 @@ div.admin_actions span{
   position: relative;
   top: 3px;
   margin-right: 0px;
+  float: none;
 }
 /*************************** User Show ****************************************/
 #user_show ul li.groups_list{

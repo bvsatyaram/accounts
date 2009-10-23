@@ -1,0 +1,14 @@
+<% @group.users.each do |user| %>
+  <span class="user_with_box">
+    <span><%= user.display_name.humanize %></span><br>
+    <%= text_field :item_cost, user.id, :size => 5 %>
+  </span>
+<% end %>
+
+
+<script>
+  <% @group.users.each_with_index do |u, i| %>
+    CommonItem.elements[<%= i %>] = $('item_cost_<%= u.id %>')
+  <% end %>
+  CommonItem.observeAll();
+</script>

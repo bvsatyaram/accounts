@@ -32,6 +32,10 @@ class CommonItem < ActiveRecord::Base
     self.group_user.group
   end
 
+  def payment?
+    self.transaction_type == Type::PAYMENT
+  end
+
   private
   
   def decrement_user_balance

@@ -18,20 +18,11 @@ var CommonItem = {
     return $('common_item_transaction_type').value
   },
 
-  typeChange: function(){
-    this.hideAll();
-    if(this.tType() == "0"){
-      $('common_item_cost').disabled = false;
-    }
-    else{
-      $('common_item_cost').disabled = true;
-    }
-    $("transaction_type_" + this.tType()).show();
-  },
-
-  hideAll: function(){
-    $("transaction_type_0").hide();
-    $("transaction_type_1").hide();
+  typeChange: function(url){
+    var url_with_params = url + '?type=' + this.tType();
+    $('loading_image').show();
+    new Ajax.Request(url_with_params, {asynchronous:true, evalScripts:true, method:'get'});
+    return false;
   },
 
   observeAll: function(){
@@ -41,7 +32,6 @@ var CommonItem = {
     Event.observe(this.elements[i], 'click',   function(){CommonItem.update_cost();}, false);
     Event.observe(this.elements[i], 'blur', function(){CommonItem.update_cost();}, false);
     }
-    this.typeChange();
   },
 
   update_cost: function(){
@@ -70,13 +60,12 @@ var CommonItem = {
   },
 
   beforeSubmit: function(){
-    $('common_item_cost').disabled = false;
-    if(!this.validateName()){
+    if($('common_item_name').value == ""){
+      alert("Forgot the name?? Give the name of the item");
       return false;
     }
     
     var theForm = document.getElementById('new_common_item');
-
     if(this.tType() == "0"){
       var z = 0;
       var count = 0;
@@ -91,16 +80,8 @@ var CommonItem = {
         return false;
       }
     }else{
+      $('common_item_cost').disabled = false;
       return this.update_final_cost();
-    }
-  },
-
-  validateName: function(){
-    if($('common_item_name').value == ""){
-      alert("Forgot the name?? Give the name of the item");
-      return false;
-    }else{
-      return true;
     }
   },
 

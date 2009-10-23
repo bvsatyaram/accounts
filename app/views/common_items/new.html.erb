@@ -14,7 +14,9 @@
       </div>
       <div class="label_item">
         <%= f.label :transaction_type %>
-        <%= f.select :transaction_type, TRANSACTION_TYPE_OPTIONS_ARRAY, {:selected => @common_item.transaction_type}, {:onchange => "CommonItem.typeChange()", :id => "common_item_transaction_type"} %>
+        <%= f.select :transaction_type, TRANSACTION_TYPE_OPTIONS_ARRAY, {:selected => @common_item.transaction_type},
+          {:onchange => "CommonItem.typeChange('#{new_group_common_item_path(@group)}')", :id => "common_item_transaction_type"} %>
+        <span id="loading_image" style="display: none"><%= image_tag("ajax-loader.gif") %></span>
       </div>
       <div class="label_item">
         <%= f.label :cost %>
@@ -22,12 +24,14 @@
       </div>
       <div class="label_item">
         <label for="common_item_users">Users:</label>
-        <%= render :partial => "common_items/transaction_types" %>
+        <div id="transaction_type">
+          <%= render :partial => "common_items/transaction_types_#{@common_item.transaction_type}" %>
+        </div>
       </div>
       
       <div class="label_item">
         <label style="visibility:hidden">.</label>
-        <%= f.submit "Create", :class => "button", :onclick => "return CommonItem.beforeSubmit()" %> or <%= link_to "Cancel", group_path(@group) %>
+        <%= f.submit "Create", :class => "button", :onclick => "return CommonItem.beforeSubmit()" %>&nbsp;&nbsp;or&nbsp;&nbsp;<%= link_to "Cancel", group_path(@group) %>
       </div>
     <% end %>
   </fieldset>
