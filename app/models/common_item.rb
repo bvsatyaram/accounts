@@ -39,8 +39,8 @@ class CommonItem < ActiveRecord::Base
   private
   
   def decrement_user_balance
-    self.user.update_attribute(:net_balance, self.user.net_balance - self.cost)
-    self.group_user.update_attribute(:balance, self.group_user.balance - self.cost)
+    self.user.update_attribute(:net_balance, self.user.reload.net_balance - self.cost)
+    self.group_user.update_attribute(:balance, self.group_user.reload.balance - self.cost)
   end
 
   def increment_user_balance

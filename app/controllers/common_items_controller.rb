@@ -63,8 +63,6 @@ class CommonItemsController < ApplicationController
 
   private
 
-  
-
   def find_group_and_group_user
     @group = current_user.groups.find(params[:group_id])
     @group_user = @group.get_group_user(current_user)
