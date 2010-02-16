@@ -2,7 +2,7 @@ class GroupUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
 
-  has_many :common_items
+  has_many :common_items, :dependent => :destroy
   named_scope :payers, :conditions => ["balance > 0"]
   named_scope :receivers, :conditions => ["balance < 0"]
   
