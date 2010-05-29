@@ -12,7 +12,7 @@
    <%= render :partial => "groups/pay_suggestions", :locals => {:group_user => @group_user, :full_view => (current_user == @group.admin)} %>
    <% unless @group.description.blank? %>
      <div>
-      <strong>Group Info:</strong> <%= @group.description %>
+       <strong>Group Info:</strong> <%= @group.description %>
      </div>
    <% end %>
 </div>

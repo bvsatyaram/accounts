@@ -20,7 +20,7 @@
         <tr class="<%= 'payment' if common_item.payment? %>">
           <td>
             <% if common_item.payment? %>
-              <span style="color: #337733">Payment -</span>
+              <span style="color: #337733">Payment made-</span>
             <% end %>
             <%= common_item.name %>&nbsp;&nbsp;<small><%= show_delete_link(common_item)%></small>
           </td>
