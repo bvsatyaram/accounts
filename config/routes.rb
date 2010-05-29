@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route with more complex sub-resources
    map.resources :groups do |groups|
      groups.resources :common_items
+     groups.resources :group_users
    end
 
   # Sample resource route within a namespace:

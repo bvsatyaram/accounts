@@ -169,6 +169,11 @@ table.group_status td {
   background-color: #FFFFBB;
 }
 
+#common_items_table .suspended{
+  color: #AAA;
+  font-size: 0.9em;
+}
+
 div.group_details {
   background: #EFEEFE;
   width: 100%;
