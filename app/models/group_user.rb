@@ -19,6 +19,8 @@ class GroupUser < ActiveRecord::Base
   validates_inclusion_of  :status, :in => [Status::ACTIVE, Status::SUSPENDED]
   validate :check_balance_before_suspension
 
+  before_create :set_status_to_active
+
   def items
     self.user.items.find_all_by_common_item_id(self.group.common_items.collect(&:id))
   end
@@ -49,5 +51,9 @@ class GroupUser < ActiveRecord::Base
     if !self.can_be_suspend? && !self.active?
       errors.add(:status, "cannot be suspended when having a non zero credit")
     end
+  end
+
+  def set_status_to_active
+    self.status = Status::ACTIVE
   end
 end
