@@ -2,3 +2,4 @@ log/*.log
 tmp/**/*
 db/*.sql
 nbproject
+db/schema.rb
