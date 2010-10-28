@@ -17,11 +17,11 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @groups = current_user.groups
+    @groups = current_user.active_groups
   end
 
   def show
-    @group = current_user.groups.find(params[:id])
+    @group = current_user.active_groups.find(params[:id])
     redirect_to group_common_items_path(@group)
   end
 

@@ -1,8 +1,8 @@
 <div class="group_users_list">
-  <% @group.users.each_with_index do |user, i| %>
+  <% @group.group_users.active.each_with_index do |g_user, i| %>
     <span class="group_user">
-      <input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= user.id %>" <%= "CHECKED" if user == current_user %>/>
-      <%= user.display_name.humanize %>
+      <input id="check_box_<%= i %>" type=checkbox name="user_ids[]" value="<%= g_user.user.id %>" <%= "CHECKED" if g_user.user == current_user %>/>
+      <%= g_user.user.display_name.humanize %>
     </span>
   <% end %>
   <br>

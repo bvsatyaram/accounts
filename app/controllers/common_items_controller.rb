@@ -3,10 +3,10 @@ class CommonItemsController < ApplicationController
   allow :exec => :check_auth
   
   def new
-    unless request.xhr?
-      @common_item = @group_user.common_items.new(:transaction_date => Date.today.strftime("%B %d,%Y"))
-    else
+    if request.xhr?
       @type = params[:type]
+    else
+      @common_item = @group_user.common_items.new(:transaction_date => Date.today.strftime("%B %d,%Y"))
     end
   end
 
@@ -50,7 +50,8 @@ class CommonItemsController < ApplicationController
     end
     
     @total_cost = @common_items ? @group.common_items.collect(&:cost).sum : 0
-    @new_common_item = @group.common_items.new(:group_user_id => @group_user.id, :cost => 0, :transaction_date => Date.today.strftime("%B %d,%Y"))
+    @active_group_users = @group.group_users.active
+    @suspended_group_users = @group.group_users.suspended
   end
 
   def destroy
@@ -64,7 +65,7 @@ class CommonItemsController < ApplicationController
   private
 
   def find_group_and_group_user
-    @group = current_user.groups.find(params[:group_id])
+    @group = current_user.active_groups.find(params[:group_id])
     @group_user = @group.get_group_user(current_user)
   end
 
